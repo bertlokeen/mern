@@ -1,0 +1,26 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "noder server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Edilbert Loquine",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
