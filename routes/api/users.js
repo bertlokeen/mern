@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
-// @route   GET api/users/test
-// @desc    TEST users route
-// @access  Public
-router.get('/test', (req, res) => res.json({
-    msg: 'Test'
-}));
+const UserController = require('../../controllers/UserController');
+
+router.post('/register', UserController.validateRegister, UserController.register);
+
+router.post('/login', UserController.login);
+
+router.get('/user', passport.authenticate('jwt', {
+    session: false
+}), UserController.getUser);
 
 module.exports = router;
