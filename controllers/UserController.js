@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
-const validateRegisterInput = require('../validation/register');
-const validateLoginInput = require('../validation/login');
-
 exports.validateRegister = (req, res, next) => {
     req.sanitize('name');
     req.checkBody('name', 'Name is required.').notEmpty();
@@ -54,20 +51,10 @@ exports.register = (req, res) => {
                 })
             })
         }
-    });
+    }).catch(err => res.status(400).json(err));
 }
 
 exports.login = (req, res) => {
-    const {
-        errors,
-        isValid
-    } = validateLoginInput(req.body);
-
-
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-
     const email = req.body.email;
     const password = req.body.password;
 
