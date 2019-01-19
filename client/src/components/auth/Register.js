@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 export class Register extends Component {
   state = {
@@ -60,107 +60,39 @@ export class Register extends Component {
                 Create your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames('form-control form-control.lg', {
-                      'is-invalid':
-                        errors.length > 0
-                          ? errors.filter(err => err.param === 'name')[0]
-                          : false
-                    })}
-                    placeholder="Name"
-                    name="name"
-                    onChange={this.onChange}
-                  />
-                  {errors.length > 0 ? (
-                    <div className="invalid-feedback">
-                      {errors.filter(err => err.param === 'name').length > 0
-                        ? errors.filter(err => err.param === 'name')[0].msg
-                        : ''}
-                    </div>
-                  ) : (
-                    false
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames('form-control form-control.lg', {
-                      'is-invalid':
-                        errors.length > 0
-                          ? errors.filter(err => err.param === 'email')[0]
-                          : false
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    onChange={this.onChange}
-                  />
-                  {errors.length > 0 ? (
-                    <div className="invalid-feedback">
-                      {errors.filter(err => err.param === 'email').length > 0
-                        ? errors.filter(err => err.param === 'email')[0].msg
-                        : ''}
-                    </div>
-                  ) : (
-                    false
-                  )}
-                  <small className="form-text text-muted">
-                    This site uses Gravatar so if you want a profile image, use
-                    a Gravatar email
-                  </small>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames('form-control form-control.lg', {
-                      'is-invalid':
-                        errors.length > 0
-                          ? errors.filter(err => err.param === 'password')[0]
-                          : false
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.onChange}
-                  />
-                  {errors.length > 0 ? (
-                    <div className="invalid-feedback">
-                      {errors.filter(err => err.param === 'password').length > 0
-                        ? errors.filter(err => err.param === 'password')[0].msg
-                        : ''}
-                    </div>
-                  ) : (
-                    false
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames('form-control form-control.lg', {
-                      'is-invalid':
-                        errors.length > 0
-                          ? errors.filter(
-                              err => err.param === 'password_confirm'
-                            )[0]
-                          : false
-                    })}
-                    placeholder="Confirm Password"
-                    name="password_confirm"
-                    onChange={this.onChange}
-                  />
-                  {errors.length > 0 ? (
-                    <div className="invalid-feedback">
-                      {errors.filter(err => err.param === 'password_confirm')
-                        .length > 0
-                        ? errors.filter(
-                            err => err.param === 'password_confirm'
-                          )[0].msg
-                        : ''}
-                    </div>
-                  ) : (
-                    false
-                  )}
-                </div>
+                <TextFieldGroup
+                  placeholder="Name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                  errors={errors}
+                />
+                <TextFieldGroup
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  errors={errors}
+                  info="This site uses gravatar as image default"
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  errors={errors}
+                />
+                <TextFieldGroup
+                  placeholder="Confirm Password"
+                  name="password_confirm"
+                  type="password"
+                  value={this.state.password_confirm}
+                  onChange={this.onChange}
+                  errors={errors}
+                />
+
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

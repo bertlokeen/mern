@@ -20,7 +20,7 @@ const TextFieldGroup = ({
         className={classnames('form-control form-control.lg', {
           'is-invalid':
             errors.length > 0
-              ? errors.filter(err => err.param === type)[0]
+              ? errors.filter(err => err.param === name)[0]
               : false
         })}
         placeholder={placeholder}
@@ -32,8 +32,8 @@ const TextFieldGroup = ({
       {info && <small className="form-text text-muted">{info}</small>}
       {errors.length > 0 ? (
         <div className="invalid-feedback">
-          {errors.filter(err => err.param === type).length > 0
-            ? errors.filter(err => err.param === type)[0].msg
+          {errors.filter(err => err.param === name).length > 0
+            ? errors.filter(err => err.param === name)[0].msg
             : ''}
         </div>
       ) : (
